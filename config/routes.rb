@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "shipping_addresses#index"
+  root to: "shipping_addresses#new"
 
   resources :customers
   resources :addresses

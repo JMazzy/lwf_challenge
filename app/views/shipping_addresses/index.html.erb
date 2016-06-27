@@ -1,0 +1,48 @@
+<table>
+  <thead>
+    <tr>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Address
+      </th>
+      <th>
+        City
+      </th>
+      <th>
+        State
+      </th>
+      <th>
+        Zip
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shipping_addresses.each do |sa| %>
+      <tr>
+        <td>
+          <%= sa.customer.first_name %>
+        </td>
+        <td>
+          <%= sa.customer.last_name %>
+        </td>
+        <td>
+          <%= sa.address.address %>
+        </td>
+        <td>
+          <%= sa.address.city %>
+        </td>
+        <td>
+          <%= sa.address.state %>
+        </td>
+        <td>
+          <%= sa.address.zip %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
