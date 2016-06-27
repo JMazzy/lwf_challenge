@@ -1,2 +1,4 @@
-<input type="file" name="addresses">
-<input type="submit" name="submit">
+<%= form_tag({action: :create}, multipart: true) do %>
+  <%= file_field_tag 'address_file' %>
+  <%= submit_tag 'submit' %>
+<% end %>
