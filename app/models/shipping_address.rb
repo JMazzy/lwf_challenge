@@ -10,8 +10,8 @@ class ShippingAddress < ActiveRecord::Base
     contents.shift
 
     contents.each do |line|
-      customer = Customer.new( first_name: line[0], last_name: line[1] )
-      address = Address.new( address: line[2], city: line[3], state: line[4], zip: line[5] )
+      customer = Customer.find_or_initialize_by( first_name: line[0], last_name: line[1] )
+      address = Address.find_or_initialize_by( address: line[2], city: line[3], state: line[4], zip: line[5] )
 
       if customer.save && address.save
         ShippingAddress.create( customer_id: customer.id, address_id: address.id )
