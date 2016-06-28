@@ -9,11 +9,16 @@ class ShippingAddressesController < ApplicationController
 
   def create
     file_data = params["address_file"]
+    file = file_data.tempfile
+    filename = file_data.original_filename
 
-    ShippingAddress.create_from_file( file_data.tempfile,
-                                      file_data.original_filename )
-
-    redirect_to :shipping_addresses
+    if ShippingAddress.create_from_file( file, filename )
+      flash[:notice] = "Addresses imported from file!"
+      redirect_to :shipping_addresses
+    else
+      flash[:alert] = "There are problems with the uploaded file. Please fix them and try again."
+      render :new
+    end
   end
 
 end

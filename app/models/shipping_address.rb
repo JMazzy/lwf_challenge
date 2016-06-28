@@ -10,9 +10,15 @@ class ShippingAddress < ActiveRecord::Base
     contents.shift
 
     contents.each do |line|
-      customer = Customer.create( first_name: line[0], last_name: line[1] )
-      address = Address.create( address: line[2], city: line[3], state: line[4], zip: line[5] )
-      ShippingAddress.create( customer_id: customer.id, address_id: address.id )
+      customer = Customer.new( first_name: line[0], last_name: line[1] )
+      address = Address.new( address: line[2], city: line[3], state: line[4], zip: line[5] )
+
+      if customer.save && address.save
+        ShippingAddress.create( customer_id: customer.id, address_id: address.id )
+      else
+        return false
+      end
     end
+    true
   end
 end
