@@ -10,9 +10,8 @@ class ShippingAddressesController < ApplicationController
   def create
     file_data = params["address_file"]
     file = file_data.tempfile
-    filename = file_data.original_filename
 
-    if ShippingAddress.create_from_file( file, filename )
+    if ShippingAddress.create_from_file( file )
       flash[:notice] = "Addresses imported from file!"
       redirect_to :shipping_addresses
     else
