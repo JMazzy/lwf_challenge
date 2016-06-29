@@ -6,4 +6,6 @@ class Address < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :zip, presence: true
+
+  validates :address, uniqueness: { scope: [:city,:state,:zip] }
 end

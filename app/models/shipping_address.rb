@@ -5,6 +5,8 @@ class ShippingAddress < ActiveRecord::Base
   validates :customer_id, presence: true
   validates :address_id, presence: true
 
+  validates :address_id, uniqueness: { scope: :customer_id }
+
   def self.create_from_file(file)
     contents = File.readlines(file).map { |line| line.strip.split(",") }
     contents.shift
