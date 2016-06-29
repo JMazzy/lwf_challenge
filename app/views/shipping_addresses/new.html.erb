@@ -1,4 +1,6 @@
+<h2>Upload Addresses</h2>
+
 <%= form_tag({action: :create}, multipart: true) do %>
   <%= file_field_tag 'address_file' %>
-  <%= submit_tag 'submit' %>
+  <%= submit_tag "Upload" %>
 <% end %>
