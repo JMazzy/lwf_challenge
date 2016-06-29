@@ -1,7 +1,7 @@
 class ShippingAddressesController < ApplicationController
 
   def index
-    @shipping_addresses = ShippingAddress.all
+    @shipping_addresses = ShippingAddress.includes(:customer, :address).order("customers.last_name")
   end
 
   def new

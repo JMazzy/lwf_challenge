@@ -66,6 +66,14 @@ describe ShippingAddress do
 
     end
 
+    context "uploading duplicate data" do
+      let( :file ) { "spec/fixtures/files/valid.csv" }
+
+      it "does not duplicate records" do
+        expect{ 2.times { ShippingAddress.create_from_file( file ) } }.to change{ ShippingAddress.count }.by(1)
+      end
+    end
+
   end
 
 end
