@@ -1,7 +1,7 @@
 class ShippingAddressesController < ApplicationController
 
   def index
-    @shipping_addresses = ShippingAddress.includes(:customer, :address).order("customers.last_name")
+    @shipping_addresses = ShippingAddress.includes(:customer, :address).order("customers.last_name").paginate( page: params[:page], per_page: 25 )
   end
 
   def new
